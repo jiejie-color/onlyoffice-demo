@@ -36,11 +36,11 @@
     // 编辑器高度
     height: '800px',
     // 编辑器类型，支持 word（文档）、cell（表格）、slide（PPT）
-    documentType: 'cell',
+    documentType: props.name.includes('xlsx') ? 'cell' : 'word',
     // 文档配置
     document: {
       // 文件类型
-      fileType: 'xlsx',
+      fileType: props.name.includes('xlsx') ? 'xlsx' : 'docx',
       // 文档标识符
       key,
       url: documentServerUrl + ':7001' + props.path,

@@ -8,7 +8,7 @@ import { OnlyofficeService } from './onlyoffice.service'
 @ApiSecurityAuth()
 @Controller('onlyoffice')
 export class OnlyofficeController {
-  constructor(private onlyofficeService: OnlyofficeService) {}
+  constructor(private onlyofficeService: OnlyofficeService) { }
 
   @Public()
   @Post('callback')
@@ -22,7 +22,6 @@ export class OnlyofficeController {
     @Body() body: any,
     // @Body() body: any,
   ): Promise<any> {
-    console.log(111)
     return await this.onlyofficeService.callback(body)
   }
 }

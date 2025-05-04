@@ -51,7 +51,6 @@ export class OnlyofficeService {
                 decodeURIComponent(uriEncoded)
 
                 const newKey = decodeURIComponent(uriEncoded)
-                console.log(newKey)
                 const stream: WriteStream = createWriteStream(
                     path.join(process.cwd(), '/public/', newKey),
                 )
