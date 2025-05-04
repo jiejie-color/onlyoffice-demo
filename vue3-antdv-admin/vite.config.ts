@@ -89,17 +89,17 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       }),
       // https://github.com/fi3ework/vite-plugin-checker
       isDev &&
-        checker({
-          typescript: true,
-          // vueTsc: true,
-          eslint: {
-            useFlatConfig: true,
-            lintCommand: 'eslint "./src/**/*.{.vue,ts,tsx}"', // for example, lint .ts & .tsx
-          },
-          overlay: {
-            initialIsOpen: false,
-          },
-        }),
+      checker({
+        typescript: true,
+        // vueTsc: true,
+        eslint: {
+          useFlatConfig: true,
+          lintCommand: 'eslint "./src/**/*.{.vue,ts,tsx}"', // for example, lint .ts & .tsx
+        },
+        overlay: {
+          initialIsOpen: false,
+        },
+      }),
     ],
     css: {
       preprocessorOptions: {
@@ -116,6 +116,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       host: '0.0.0.0',
       port: 8088,
       open: true,
+      https: false,
       proxy: {
         '^/web-apps': {
           // target: 'https://nest-admin.buqiyuan.top',
@@ -126,7 +127,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           // target: 'https://nest-admin.buqiyuan.top',
           target: 'http://127.0.0.1:7001',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
+          // rewrite: (path) => path.replace(/^\/api/, ''),
         },
         '^/upload': {
           // target: 'https://nest-admin.buqiyuan.top/upload',

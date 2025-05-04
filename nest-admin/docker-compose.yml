@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   # nest-admin-web:
@@ -26,7 +26,7 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     ports:
-      - '${DB_PORT}:3306'
+      - "${DB_PORT}:3306"
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci # 设置utf8字符集
     volumes:
       - ./__data/mysql/:/var/lib/mysql/ # ./__data/mysql/ 路径可以替换成自己的路径
@@ -42,9 +42,23 @@ services:
       - .env
       - .env.production
     ports:
-      - '${REDIS_PORT}:6379'
+      - "${REDIS_PORT}:6379"
     command: >
       --requirepass ${REDIS_PASSWORD}
+    networks:
+      - nest_admin_net
+  onlyoffice:
+    image: onlyoffice/documentserver:7.3
+    container_name: nest-admin-onlyoffice
+    restart: always
+    ports:
+      - "8848:80" # 可以根据需要修改端口映射
+    environment:
+      - JWT_ENABLED=false
+    volumes:
+      - ./__data/onlyoffice/logs:/var/log/onlyoffice
+      - ./__data/onlyoffice/data:/var/www/onlyoffice/Data
+      - ./__data/onlyoffice/lib:/var/lib/onlyoffice
     networks:
       - nest_admin_net
 
